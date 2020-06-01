@@ -19,18 +19,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
-<body>
+
+<body>     
+    
     <div id="app">
         <section class="px-8 py-4 mb-6">
             <header class ="container mx-auto"> 
                 <h1>
                     <img
-                        src="/images/logo.svg" alt="Tweety">
+                        src="/images/logo.svg" alt="Tweety"
+                    >
                 </h1>
             </header>
         </section>   
-
-
         <section class="px-8">
             <main class="mx-auto">dashboard</main>
         </section>   
@@ -39,5 +40,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
