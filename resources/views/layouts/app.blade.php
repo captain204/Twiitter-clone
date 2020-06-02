@@ -37,7 +37,28 @@
         </section>   
         
         <main class="py-4">
-            @yield('content')
+            <div class="lg:flex lg:justify-between">
+                <div class="lg:w-32"> 
+                    1
+                    @include('_sidebar-links')
+                </div>
+                
+                <div class="lg:flex-1 lg:mx-10" style="max-width: 700px">
+        
+                    <div class="border border-blue-400 rounded-lg px-8 py-6 mb-8">
+        
+                        @yield('content')
+        
+                    </div>
+        
+                </div>
+        
+                <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4">
+        
+                    @include('_friends-list')
+        
+                </div>
+            </div>
         </main>
     </div>
 
