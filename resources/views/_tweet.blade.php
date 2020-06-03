@@ -4,9 +4,11 @@
     <div class="mr-2 flex-shrink-0">
         <a href="{{route('profile', $tweet->user->name)}}">
             <img    
-            src="{{ auth()->user()->avatar}}"
+            src="{{ $tweet->user->avatar}}"
             alt=""
             class="rounded-full mr-2"
+            width = "50"
+            height = "50"
 
             >
         </a>
@@ -16,9 +18,8 @@
 
         <h5 class="font-bold mb-4">
             <a href="{{route('profile', $tweet->user->name)}}">
-
-                {{$tweet->user->name}}
                 
+                {{$tweet->user->name}}
             </a>
 
         </h5>
