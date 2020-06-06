@@ -19,9 +19,11 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    /*protected $fillable = [
+        'username','name', 'email', 'password',
+    ];*/
+
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,12 +43,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute()
+    public function getAvatarAttribute($value)
     {
-       return "https://i.pravatar.cc/200?u=".$this->email;
+       //return asset($value);
+       return asset('storage/'.$value ?:"/images/blank-profile-picture-973460_1280.png"); 
+
     }
 
 
+
+
+    public function setPasswordAttribbute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
 
     public function timeline()
@@ -59,7 +69,8 @@ class User extends Authenticatable
         #$ids->push($this->id);
         return Tweet::whereIn('user_id',$friends)
             ->orWhere('user_id', $this->id)
-            ->latest()->get();
+            ->latest()
+            ->paginate(50);
     }
 
     public function tweets()
@@ -73,9 +84,12 @@ class User extends Authenticatable
         return 'name';
     }
 
-    public function path()
+    public function path($append ="")
     {
-        return route('profile', $this->name);
+        $path = route('profile', $this->username);
+
+        return $append ? "{$path}/{$append}": $path;
+
     }    
 
 

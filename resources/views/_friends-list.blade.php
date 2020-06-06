@@ -4,7 +4,7 @@
 
     <ul>
 
-        @foreach(auth()->user()->follows as $user)
+        @forelse(auth()->user()->follows as $user)
             
         <li class="mb-4">
             <div>
@@ -24,8 +24,11 @@
             </div>
 
         </li>
+        @empty
 
-        @endforeach
+        <li> You are not following anybody yet </li>
+
+        @endforelse
 
     </ul>
 

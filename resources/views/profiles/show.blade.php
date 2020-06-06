@@ -17,7 +17,7 @@
          </div>
     
         <div class="flex justify-between items-center mb-6"> 
-                <div>
+                <div style="max-width:270px">
                     <h2 class="font-bold text-2xl mb-0"> {{$user->name}} </h2>
 
                     <p class="text-sm"> Joined {{$user->created_at->diffForHumans()}}</p>
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="flex">
-                    @if (current_user()->is($user))
+                    @can('edit',$user)
                     
                     <a href="{{$user->path('edit')}}"
 
@@ -33,7 +33,7 @@
 
                         Edit Profile
                     </a>
-                    @endif
+                    @endcan
                     <x-follow-button :user="$user"> </x-follow-button>
                 </div>
         </div>
@@ -46,9 +46,7 @@
 
     <hr>
 
-    @include('_timeline',[
-        'tweets'=> $user->tweets
-    ])
+    @include('_timeline')
     
 
 
