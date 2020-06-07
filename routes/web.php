@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tweets','TweetController@store');
 
+    Route::post('/tweets/{tweet}/like', 'TweetLikesController@store');
+    Route::delete('/tweets/{tweet}/like', 'TweetLikesController@destroy');
+
     Route::post('/profiles/{user:username}/follow','FollowsController@store')->name('follow');
 
     // Handling authorization within routes
